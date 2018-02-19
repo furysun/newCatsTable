@@ -133,7 +133,7 @@ public class MainController {
 
     }
 
-    private HBox populateHBox(Cat cat) {
+    private HBox populateHBox(final Cat cat) {
         HBox catHBox = new HBox();
         catHBox.setSpacing(55);
         catHBox.setPadding(new Insets(10));
