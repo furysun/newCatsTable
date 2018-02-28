@@ -30,6 +30,10 @@ public class ClassCatDao implements CatDao {
 
     @Override
     public void createCat(Cat cat) {
+        if (cat == null) {
+            throw new IllegalArgumentException();
+        }
+
         List<Cat> cats = catStorage.getCats();
         cats.add(cat);
     }
@@ -44,6 +48,10 @@ public class ClassCatDao implements CatDao {
 
     @Override
     public void update(Cat cat) {
+        if (cat == null) {
+            throw new IllegalArgumentException();
+        }
+
         Cat existingCat = catStorage.findCatById(cat.getId());
 
         existingCat.setName(cat.getName());

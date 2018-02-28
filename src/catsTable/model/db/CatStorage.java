@@ -36,7 +36,7 @@ public class CatStorage {
         }
 
         System.out.println(id);
-        throw new CatNotFoundException();
+        throw new CatNotFoundException("Cat not found");
     }
 
     public List<Cat> getCats() {
