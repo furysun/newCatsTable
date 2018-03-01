@@ -1,6 +1,7 @@
 package catsTable.model.service;
 
 import catsTable.model.dao.CatDao;
+import catsTable.model.dao.impl.classDao.CatStorage;
 import catsTable.model.dao.impl.classDao.ClassCatDao;
 import catsTable.model.dao.impl.fileDao.FileCatDao;
 import catsTable.model.domain.Cat;

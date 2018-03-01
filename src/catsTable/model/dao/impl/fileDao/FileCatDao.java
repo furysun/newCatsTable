@@ -3,6 +3,7 @@ package catsTable.model.dao.impl.fileDao;
 import catsTable.model.dao.CatDao;
 import catsTable.model.dao.impl.testData.TestDataLoader;
 import catsTable.model.domain.Cat;
+import catsTable.model.exception.CatNotFoundException;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,6 +20,7 @@ public class FileCatDao implements CatDao {
         write(testCats);
     }
 
+
     public static FileCatDao getInstance() {
         if (instance == null) {
             instance = new FileCatDao();
@@ -33,17 +35,47 @@ public class FileCatDao implements CatDao {
 
     @Override
     public void createCat(Cat cat) {
+        if (cat == null) {
+            throw new IllegalArgumentException();
+        }
 
+        List<Cat> cats = getCats();
+        cats.add(cat);
+
+        write(cats);
     }
 
     @Override
     public void delete(int id) {
-
+        List<Cat> cats = getCats();
+        cats.remove(catFindById(cats, id));
+        write(cats);
     }
 
     @Override
     public void update(Cat cat) {
+        if (cat == null) {
+            throw new IllegalArgumentException();
+        }
+        List<Cat> cats = getCats();
+        Cat existingCat = catFindById(cats,cat.getId());
 
+        existingCat.setName(cat.getName());
+        existingCat.setColor(cat.getColor());
+        existingCat.setWeigh(cat.getWeigh());
+        existingCat.setAge(cat.getAge());
+
+        write(cats);
+    }
+
+    private Cat catFindById(List<Cat> cats, int id) {
+        for (Cat cat : cats) {
+            if (cat.getId() == id) {
+                return cat;
+            }
+        }
+
+        throw new CatNotFoundException("Cat not found");
     }
 
     private void write(List<Cat> cats) {
@@ -56,7 +88,7 @@ public class FileCatDao implements CatDao {
 
     private List<Cat> read() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("/Users/yana/Desktop/cats.dat"))) {
-            return  (List<Cat>) ois.readObject();
+            return (List<Cat>) ois.readObject();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

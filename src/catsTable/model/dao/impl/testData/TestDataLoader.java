@@ -20,6 +20,7 @@ public class TestDataLoader {
         return instance;
     }
 
+
     public List<Cat> getTestCats() {
         List<Cat> cats = new ArrayList<>();
 
