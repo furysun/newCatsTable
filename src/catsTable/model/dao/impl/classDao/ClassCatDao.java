@@ -1,7 +1,6 @@
-package catsTable.model.dao.impl;
+package catsTable.model.dao.impl.classDao;
 
 import catsTable.model.dao.CatDao;
-import catsTable.model.db.CatStorage;
 import catsTable.model.domain.Cat;
 
 import java.util.List;

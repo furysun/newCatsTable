@@ -16,5 +16,4 @@ public class CalculatorTest {
         // then
         assertEquals(5, result);
     }
-
 }

@@ -1,7 +1,8 @@
 package catsTable.model.service;
 
 import catsTable.model.dao.CatDao;
-import catsTable.model.dao.impl.ClassCatDao;
+import catsTable.model.dao.impl.classDao.ClassCatDao;
+import catsTable.model.dao.impl.fileDao.FileCatDao;
 import catsTable.model.domain.Cat;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class CatService {
     }
 
     private CatService() {
-        catDao = ClassCatDao.getInstance();
+        catDao = FileCatDao.getInstance();
     }
 
     public List<Cat> getCats() {

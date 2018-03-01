@@ -1,7 +1,7 @@
-package catsTable.model.db;
+package catsTable.model.exception;
 
 public class CatNotFoundException extends RuntimeException {
-    CatNotFoundException(String message) {
+    public CatNotFoundException(String message) {
         super(message);
     }
 }

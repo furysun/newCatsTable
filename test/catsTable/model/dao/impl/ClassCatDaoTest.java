@@ -1,11 +1,11 @@
 package catsTable.model.dao.impl;
 
-import catsTable.model.db.CatNotFoundException;
+import catsTable.model.dao.impl.classDao.ClassCatDao;
+import catsTable.model.exception.CatNotFoundException;
 import catsTable.model.domain.Cat;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -105,5 +105,4 @@ public class ClassCatDaoTest {
         // when
         classCatDao.createCat(null);
     }
-
 }

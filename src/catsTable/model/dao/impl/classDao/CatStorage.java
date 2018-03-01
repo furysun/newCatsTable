@@ -1,15 +1,15 @@
-package catsTable.model.db;
+package catsTable.model.dao.impl.classDao;
 
+import catsTable.model.dao.impl.testData.TestDataLoader;
 import catsTable.model.domain.Cat;
-import catsTable.model.domain.CatColor;
+import catsTable.model.exception.CatNotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CatStorage {
-    private List<Cat> cats;
-
     private static CatStorage catStorage;
+
+    private List<Cat> cats;
 
     public static CatStorage getInstance() {
         if (catStorage == null) {
@@ -19,13 +19,8 @@ public class CatStorage {
     }
 
     private CatStorage() {
-        cats = new ArrayList<>();
-
-        cats.add(new Cat("Tom", 1, CatColor.RED, 1));
-        cats.add(new Cat("Tim", 2, CatColor.BLACK, 2));
-        cats.add(new Cat("Mia", 3, CatColor.STRIPED, 4));
-        cats.add(new Cat("Rose", 2, CatColor.WHITE, 1));
-        cats.add(new Cat("Pri", 4, CatColor.RED, 5));
+        TestDataLoader testDataLoader = TestDataLoader.getInstance();
+        cats = testDataLoader.getTestCats();
     }
 
     public Cat findCatById(int id) {
@@ -35,7 +30,6 @@ public class CatStorage {
             }
         }
 
-        System.out.println(id);
         throw new CatNotFoundException("Cat not found");
     }
 
